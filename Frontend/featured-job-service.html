@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">Service Details · Skill Bridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            colors: {
+              primary: "#7f13ec",
+              "primary-dark": "#6b0fc7",
+              page: "#f7f6f8",
+              ink: "#0f172a",
+              "ink-muted": "#475569",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+  <body class="bg-white font-display text-ink antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-3">
+            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+            </svg>
+            <span class="text-xl font-bold text-ink">Skill Bridge</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-6">
+            <a href="index.html" class="text-sm font-medium text-ink-muted hover:text-primary">Home</a>
+            <a href="index.html#featured-services" class="text-sm font-medium text-ink-muted hover:text-primary">Services</a>
+            <a href="login.html" class="text-sm font-medium text-primary font-semibold">Login</a>
+            <a href="register.html" class="px-4 py-2 bg-primary text-white rounded-full text-sm font-semibold hover:bg-primary-dark">Sign Up</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="heroSection" class="relative overflow-hidden bg-gradient-to-br from-primary via-purple-700 to-indigo-800 text-white">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+                <span class="material-symbols-outlined text-lg" id="serviceIcon">star</span>
+                <span class="text-sm font-semibold uppercase tracking-wide">Featured Service</span>
+              </div>
+              <h1 id="serviceTitle" class="text-4xl lg:text-6xl font-black leading-tight mb-6">Professional Service</h1>
+              <p id="serviceSubtitle" class="text-xl text-white/90 mb-8 leading-relaxed">Top-rated professionals ready to help. Book instantly, get same-day service.</p>
+              <div class="flex flex-wrap gap-4 mb-8">
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <span class="material-symbols-outlined text-amber-300">star</span>
+                  <span class="font-semibold" id="serviceRating">4.9</span>
+                  <span class="text-white/80">(<span id="serviceReviews">50</span>+ reviews)</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <span class="material-symbols-outlined">schedule</span>
+                  <span id="serviceEta">Same-day available</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <span class="material-symbols-outlined">verified</span>
+                  <span>Verified professionals</span>
+                </div>
+              </div>
+              <button id="bookNowBtn" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform">
+                Book Now
+              </button>
+            </div>
+            <div class="hidden lg:block">
+              <div class="relative">
+                <div class="absolute inset-0 bg-white/10 rounded-3xl blur-3xl"></div>
+                <div id="serviceImage" class="relative h-96 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-9xl text-white/30" id="serviceImageIcon">construction</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Packages -->
+      <section class="py-16 bg-page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-4">Choose Your Package</h2>
+            <p class="text-lg text-ink-muted">Transparent pricing, no hidden charges</p>
+          </div>
+          <div id="packagesContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Packages will be loaded here -->
+            <div class="animate-pulse bg-white rounded-2xl p-6 border border-gray-100">
+              <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+              <div class="h-4 bg-gray-100 rounded w-1/2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Available Professionals -->
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-3xl font-bold mb-2">Available Professionals</h2>
+              <p class="text-ink-muted">Choose from our verified service providers</p>
+            </div>
+          </div>
+          <div id="professionalsContainer" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="animate-pulse bg-gray-50 rounded-xl p-4 border border-gray-100">
+              <div class="h-16 bg-gray-200 rounded-full w-16 mx-auto mb-4"></div>
+              <div class="h-4 bg-gray-100 rounded w-3/4 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="py-16 bg-page">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center mb-12">Why Choose Skill Bridge?</h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="material-symbols-outlined text-3xl text-primary">verified_user</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Verified Professionals</h3>
+              <p class="text-ink-muted">All our service providers are background-checked and verified</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="material-symbols-outlined text-3xl text-primary">schedule</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Same-Day Service</h3>
+              <p class="text-ink-muted">Book in the morning, get service the same day</p>
+            </div>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="material-symbols-outlined text-3xl text-primary">shield</span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">100% Satisfaction</h3>
+              <p class="text-ink-muted">Money-back guarantee if you're not satisfied</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="py-16 bg-gradient-to-r from-primary to-purple-700 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+          <p class="text-xl text-white/90 mb-8">Book your service now and experience the Skill Bridge difference</p>
+          <button id="ctaBookBtn" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-transform">
+            Book Service Now
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/featured-job-service.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
+

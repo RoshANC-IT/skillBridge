@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Manrope", "sans-serif"],
+          },
+          colors: {
+            primary: "#6b3df4",
+            ink: "#0f172a",
+            "ink-muted": "#475569",
+            surface: "#ffffff",
+            page: "#f4f3fb",
+          },
+        },
+      },
+    };
+  </script>
+  <title>Skill Bridge · Worker Dashboard</title>
+  <style>
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid #f1f1f5;
+      border-radius: 1.25rem;
+      box-shadow: 0 24px 45px rgba(15, 23, 42, 0.04);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .tab-button.active {
+      border-bottom-color: #6b3df4;
+      color: #6b3df4;
+    }
+
+    .tab-button:hover {
+      color: #0f172a;
+    }
+  </style>
+  <link rel="stylesheet" href="css/chatbot.css">
+</head>
+
+<body class="bg-page text-ink font-display min-h-screen">
+  <div class="min-h-screen flex flex-col lg:flex-row">
+    <header
+      class="lg:hidden sticky top-0 z-30 bg-surface flex items-center justify-between px-5 py-4 shadow-sm border-b">
+      <button id="sidebarToggle" class="p-2 rounded-lg border border-gray-200">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <span class="text-lg font-semibold">Skill Bridge</span>
+      <button id="themeToggle" class="p-2 rounded-lg border border-gray-200">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </button>
+    </header>
+
+    <aside id="sidebar"
+      class="bg-surface lg:bg-white w-full lg:w-72 border-r border-gray-100 p-6 space-y-8 fixed lg:static inset-y-0 left-0 -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out z-40">
+      <div class="flex items-center justify-between lg:block">
+        <div>
+          <p class="text-sm text-ink-muted">Worker Dashboard</p>
+          <h1 class="text-2xl font-bold text-primary">Skill Bridge</h1>
+        </div>
+        <button id="closeSidebar" class="lg:hidden p-2 rounded-full hover:bg-gray-100">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div id="userAvatar"
+          class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-xl font-semibold text-primary">
+          SL
+        </div>
+        <div>
+          <p id="userName" class="text-lg font-semibold">Loading...</p>
+          <p id="userRole" class="text-sm text-ink-muted capitalize">worker</p>
+          <p class="text-xs text-ink-muted">ID: <span id="userId">--</span></p>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-semibold"
+          href="jobs.html">
+          <span class="material-symbols-outlined">search</span>
+          Find Jobs
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50" href="#">
+          <span class="material-symbols-outlined">assignment</span>
+          My applications
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 relative" href="#notifications">
+          <span class="material-symbols-outlined">notifications</span>
+          Notifications
+          <span id="notificationBadge"
+            class="hidden absolute top-2 right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50" href="#income-tracker">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
+          <span data-i18n="income-tracker-nav">Income Tracker</span>
+        </a>
+        <div class="flex items-center gap-2 px-4 py-2">
+          <label class="text-xs text-ink-muted" data-i18n="language-label">Language:</label>
+          <select id="languageSelect"
+            class="text-xs rounded-lg border border-gray-200 px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary/20">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="mr">मराठी (Marathi)</option>
+          </select>
+        </div>
+        <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50">
+          <span class="material-symbols-outlined text-rose-500">logout</span>
+          Logout
+        </button>
+      </nav>
+    </aside>
+
+    <div id="sidebarBackdrop" class="fixed inset-0 bg-black/30 z-30 hidden lg:hidden"></div>
+
+    <main class="flex-1 w-full p-4 lg:p-8 lg:pl-8">
+      <div class="flex flex-col gap-6">
+
+        <!-- Ban Notice Banner (shown by JS if account is banned) -->
+        <div id="bannedBanner" class="hidden flex items-start gap-4 bg-rose-50 border-2 border-rose-400 rounded-2xl p-5 shadow-md">
+          <div class="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-rose-700 text-2xl">block</span>
+          </div>
+          <div>
+            <h3 class="text-rose-700 font-bold text-base">Account Banned</h3>
+            <p class="text-rose-600 text-sm mt-1">Your account has been banned. Please contact to Admin for further assistance.</p>
+          </div>
+        </div>
+
+        <section class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-sm text-ink-muted">Stay on top of your gigs</p>
+            <h2 class="text-2xl font-bold">Welcome back, <span id="userFirstName">pro</span> 👋</h2>
+          </div>
+          <label class="flex items-center gap-3 text-sm font-medium cursor-pointer">
+            <span>Availability</span>
+            <span
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
+              <span class="material-symbols-outlined text-base">circle</span>
+              <span id="availabilityLabel">Updating...</span>
+            </span>
+            <input type="checkbox" id="availabilityToggle" class="sr-only" />
+            <span class="relative inline-block w-12 h-6">
+              <span class="absolute inset-0 bg-gray-300 rounded-full transition" id="availabilityTrack"></span>
+              <span class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition"
+                id="availabilityThumb"></span>
+            </span>
+          </label>
+        </section>
+
+        <section class="grid gap-4 md:grid-cols-4">
+          <article class="stat-card">
+            <p class="stat-label">Total applications</p>
+            <p id="statsTotal" class="stat-value">--</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Accepted</p>
+            <p id="statsAccepted" class="stat-value text-emerald-600">--</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Pending</p>
+            <p id="statsPending" class="stat-value text-amber-500">--</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">Rejected</p>
+            <p id="statsRejected" class="stat-value text-rose-500">--</p>
+          </article>
+        </section>
+
+        <!-- Income Tracker Section -->
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="text-xl font-semibold" data-i18n="income-tracker-title">Income Tracker</h3>
+              <p class="text-sm text-ink-muted" data-i18n="income-tracker-subtitle">Track your earnings and growth</p>
+            </div>
+            <button id="refreshEarnings" class="text-sm text-primary font-semibold hover:underline">
+              <span class="material-symbols-outlined text-base align-middle">refresh</span>
+              <span data-i18n="refresh">Refresh</span>
+            </button>
+          </div>
+
+          <!-- Earnings Cards -->
+          <div class="grid gap-4 md:grid-cols-3 mb-6">
+            <article class="stat-card bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-emerald-200">
+              <p class="stat-label text-emerald-700" data-i18n="today-earnings">Today's Earnings</p>
+              <p id="todayEarnings" class="stat-value text-emerald-700">₹0</p>
+              <p class="text-xs text-emerald-600 mt-1" id="todayCount">0 bookings</p>
+            </article>
+            <article class="stat-card bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-200">
+              <p class="stat-label text-blue-700" data-i18n="month-earnings">This Month</p>
+              <p id="monthEarnings" class="stat-value text-blue-700">₹0</p>
+              <p class="text-xs text-blue-600 mt-1" id="monthCount">0 bookings</p>
+            </article>
+            <article class="stat-card bg-gradient-to-br from-purple-50 to-purple-100/50 border-purple-200">
+              <p class="stat-label text-purple-700" data-i18n="lifetime-earnings">Lifetime Earnings</p>
+              <p id="lifetimeEarnings" class="stat-value text-purple-700">₹0</p>
+              <p class="text-xs text-purple-600 mt-1" id="lifetimeCount">0 bookings</p>
+            </article>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="grid gap-6 lg:grid-cols-2">
+            <!-- Income Growth Chart -->
+            <div>
+              <h4 class="text-lg font-semibold mb-4" data-i18n="income-growth">Income Growth (Last 6 Months)</h4>
+              <div class="relative h-64">
+                <canvas id="incomeGrowthChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Job Type Breakdown Chart -->
+            <div>
+              <h4 class="text-lg font-semibold mb-4" data-i18n="breakdown-by-type">Breakdown by Service Type</h4>
+              <div class="relative h-64">
+                <canvas id="jobTypeChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="income-tracker" class="hidden"></section>
+
+        <section class="grid gap-6 xl:grid-cols-3">
+          <div class="xl:col-span-2 space-y-4">
+            <!-- Booking Requests with Tabs -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+              <!-- Tabs Header -->
+              <div class="border-b border-gray-200">
+                <div class="flex items-center justify-between px-6 pt-4">
+                  <h3 class="text-xl font-semibold">Booking Requests</h3>
+                  <button id="refreshBookings"
+                    class="text-sm text-primary font-semibold hover:underline">Refresh</button>
+                </div>
+                <div class="flex gap-1 px-6 mt-4">
+                  <button id="tab-pending"
+                    class="tab-button active px-4 py-3 text-sm font-semibold border-b-2 border-primary text-primary transition"
+                    data-tab="pending">
+                    Pending
+                    <span id="badge-pending"
+                      class="ml-2 px-2 py-0.5 bg-primary/10 text-primary rounded-full text-xs">0</span>
+                  </button>
+                  <button id="tab-accepted"
+                    class="tab-button px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-ink-muted hover:text-ink transition"
+                    data-tab="confirmed">
+                    Accepted
+                    <span id="badge-accepted"
+                      class="ml-2 px-2 py-0.5 bg-emerald-100 text-emerald-600 rounded-full text-xs">0</span>
+                  </button>
+                  <button id="tab-rejected"
+                    class="tab-button px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-ink-muted hover:text-ink transition"
+                    data-tab="cancelled">
+                    Rejected
+                    <span id="badge-rejected"
+                      class="ml-2 px-2 py-0.5 bg-rose-100 text-rose-600 rounded-full text-xs">0</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Tab Content -->
+              <div class="p-6">
+                <div id="bookingsContainer" class="space-y-3">
+                  <div class="animate-pulse rounded-2xl bg-gray-50 p-6">
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
+                    <div class="h-3 bg-gray-100 rounded w-1/3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Applications -->
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-semibold">Recent applications</h3>
+                <button id="refreshApplications" class="text-sm text-primary font-semibold">Refresh</button>
+              </div>
+              <div id="applicationsContainer" class="space-y-3">
+                <div class="text-center py-8">
+                  <p class="text-sm text-ink-muted mb-3">No applications yet.</p>
+                  <a href="jobs.html"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition">
+                    <span class="material-symbols-outlined text-base">search</span>
+                    Browse Gigs
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6" id="notifications">
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold">Profile</h3>
+                <p class="text-sm text-ink-muted">Keep your skills up to date</p>
+              </div>
+              <button id="updateProfileBtn"
+                class="w-full bg-primary text-white py-3 rounded-xl font-semibold shadow hover:bg-primary/90">
+                Update profile
+              </button>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Notifications</h3>
+                <button id="refreshNotifications" class="text-sm text-primary font-semibold">Refresh</button>
+              </div>
+              <div id="notificationsContainer" class="space-y-4 text-sm text-ink-muted">
+                <p>Loading updates...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script type="module" src="js/worker-dashboard.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+
+</html>

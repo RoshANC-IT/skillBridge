@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Skill Bridge - Home Cleaning Services</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+  <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-20 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-gray-900 dark:text-white">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<h2 class="text-xl font-bold">Skill Bridge</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary" href="#">Home</a>
+<a class="text-sm font-bold text-primary" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Professionals</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<svg aria-hidden="true" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<input class="block w-full rounded-lg border-0 bg-gray-100 dark:bg-gray-800 py-2 pl-10 pr-3 text-sm placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary" placeholder="Search" type="text"/>
+</div>
+<button class="relative rounded-full p-2 hover:bg-gray-100 dark:hover:bg-gray-800">
+<svg class="h-6 w-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-10 w-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtB481UjSKb7CFrAc7_IUx4xU3gi0bSTB92M-NcAbzAKHSECGmUfT26V2oB5orqOdCCOtZ6GxZUtQCu8IiNkQkF32_cs5grngjB1hmWGc-LECOPexvC9CdX6OvQBnJzBlCvdX4nZ5xN2p977k16n6YsoXFi8gVNKw3E-nsjCDfo0Tqaxui71yUot4c_c9jUZho3vIY_uyhX5au-ez10KKwR4YfgdG1RsUs6XcnkwMtYkSaHUNDdx7DizxR0DLmNNuDctPUYzG84Xk");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+<div class="flex flex-col gap-12">
+<div>
+<nav aria-label="Breadcrumb">
+<ol class="flex items-center gap-2 text-sm" role="list">
+<li><a class="font-medium text-gray-500 dark:text-gray-400 hover:text-primary" href="#">Services</a></li>
+<li><svg aria-hidden="true" class="h-5 w-5 flex-shrink-0 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path clip-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" fill-rule="evenodd"></path></svg></li>
+<li><span class="font-medium text-gray-800 dark:text-gray-200">Home Cleaning</span></li>
+</ol>
+</nav>
+<div class="mt-4">
+<h1 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Home Cleaning</h1>
+<p class="mt-2 text-lg text-gray-600 dark:text-gray-400">Professional home cleaning services tailored to your needs. Book instantly or request a custom quote.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="col-span-1 md:col-span-2 lg:col-span-3">
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Standard Cleaning Packages</h2>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZB7llV_DLdqWu6JllOu0OxFcB6fkPFlsHZ0nVlFaXeKZl3WnRJodrWIsYpld5UiVbiD9jVo_MCTaFzpTR893YdsxbfEXsnMYoSfqZUkNOaMUXzC8J-9Dybcpm4pNSzDhbj08PDEixObRT06LCchcpcVFKs5raZnzVUwChUnKTa6TdwjASsbFN2X5FH8rcWbfm1_p4g8WZHF5yvI3wcmJ7vxtEswl05v_jL_m9ewGkIh0YeVP0HArnNYJ5hPY8lUSj7Ny79Y4gOZ0");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Basic Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Ideal for regular upkeep. Includes dusting, vacuuming, mopping, and tidying up.</p>
+</div>
+<button onclick="startBooking('${worker._id}')" class="mt-4 w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDiIh20C3ZGhh3Iqr1nzGV3QGs7cAd6YWi_HRFfsRQA2v3_x4-AsccDnnmKFMVGRMazUHUoQWW_ZR0y-ee57W2RMx50HeHUaIB1kqkkhJ5r25SespBMWSqc7OE41tmnZItTkUSdSGxNHOm4xJs3LRARrq8tfOsasPQv4T2suouJzDO3so6qVBvZAk3AKh2OqszzIjmpHHC-AA9BoZoFXPIt-fRzEamNq0O2EopBY0_Iu9oAnOl5UPG_3Y0upCXJcHNiImto1eAF-JI");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Deep Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Thorough cleaning for a fresh start. Includes everything in Basic Cleaning plus detailed cleaning of bathrooms and kitchen.</p>
+</div>
+<button onclick="startBooking('${worker._id}')" class="mt-4 w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">Book Now</button>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDLBpx6g1OHWMurtG8oQOXuDkESYSCQblG9IwyNFZNt_q7FaxzOZVUtctSbRLAEHH4WQeTvtQsJsTZvJV2g-tTJEHFMoozMKLptE2pDEZEPBzE83w9kuX23EkgfY6hYvFI3qh4bOyeusAVrOY0-HJxNFpOGvamPGU_lWnuNllSqD-Ltbw8j3LUhSQUwzSn1RHgWihewMzvK9S3i6GpVk5cM2kC8z6hVz_S8MC2_01tClfjw1o6aRO0fdYx_tAtBnEXEAJhrosocVT4");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Move-In/Out Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Comprehensive cleaning for transitions. Ensures a spotless space for new occupants or after moving out.</p>
+</div>
+<button onclick="startBooking('${worker._id}')" class="mt-4 w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors">Book Now</button>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 lg:col-span-3 pt-8">
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Specialized Cleaning Services</h2>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-PUp40Rxos01xgJ2Q9-_MuBHcBdI6cuk9804-FGG1Qhr2K6uHGjPV1Xuwx3Qyz-h0wAoFcmXdk_dumDLLMdRZxZ3dEEaq-Wx3Kx3_d_mTozKskHUUBb_Jruf3CDApWWJba7iU2l5FvndcYZeLpWKmoN8bpdzZSb3lJSNtY2Z_nsBjed7ivjvhBgNprYcKF4V43BvAxY6xYNPIQfpjaa7AqcFnkkMw8EtRhqm6Ipe5CjQ7LlDjFL1jN5duQj22VvKSbGETsIMmmx4");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Carpet Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Professional carpet cleaning to remove stains and allergens, leaving your carpets fresh and clean.</p>
+</div>
+<button class="mt-4 w-full bg-primary/20 dark:bg-primary/30 text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">Request Quote</button>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBptGKBlj3_G6Kx036gFi68c6MDSp24ttRGNyBfeSlMXB7fPWbXpgNwDFI4kkkVHy_I71fYY8XyHQ6lcnj3d1ztrDOl_BiGZF4YYUl6EzfQbScB-q82hLTjhWuWcwAuC2IscKebbJZXDcZ61cwumxA7rAK8O_pFUxVmaOfZ6nunZPKxEa_b2COOQPckEBLBRSxFBE2MYGjRYsLmlUK-e9rXDY6tvota1A1CeZJCWc6F8imBEPqepPJjhw5Yaoo33wvQaAFPEiA3V8M");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Window Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Streak-free window cleaning for a clear view. Includes both interior and exterior windows.</p>
+</div>
+<button class="mt-4 w-full bg-primary/20 dark:bg-primary/30 text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">Request Quote</button>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 w-full"><div class="absolute inset-0 bg-center bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8Xomz78j5X3zQwxY4VXsfd_j6MSZNRQotcfOOLsY6FebHwWxYYKKDmtK6F3eb_pL_WxVyyDhVufBkqStf8fQudfDqWz_Kx4Rf8naDopsUiTEG6BYTycNvOkxF6BhPX9MkaFNkhgqTYwIFoxIUDEHZ5QqzECdSwhbZTiZanVn8QBhk6A4_AC6PAEgHdMOSDgrX4u9LnvTySf_4MzN2jaYpe1Z6eBdVsC5BEw1bx5RINdGKQRM4xxmOTpV1UoRGTLKFxF4CAtC8o-Q");'></div></div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Upholstery Cleaning</h3>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Gentle yet effective cleaning for sofas, chairs, and other upholstered furniture.</p>
+</div>
+<button class="mt-4 w-full bg-primary/20 dark:bg-primary/30 text-primary font-bold py-2 px-4 rounded-lg hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">Request Quote</button>
+</div>
+</div>
+</div>
+<div class="pt-12">
+<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Customer Reviews</h2>
+<div class="mt-6 space-y-8">
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 shadow-md">
+<div class="flex items-start gap-4">
+<div class="h-12 w-12 rounded-full bg-cover bg-center flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZGh7Ft22lW7vDCufQWKtErQM-Lgl0eJfQbZTebTamnPIFtdpJ-QG3VjRDLPTmGVL2RMdnljPnVNLO_JWtfmnG3B7tLc85rzNn9_apDMnmmL5IDK5wf01FxXYGml8zLAfEFtx0DUWWg-YRD0RVqENrNIPnGyjOMtjEVz791In2H9kkJMa7WYI56gdgzzN0rAKPDqNLn3u98end3hgAUZ7_PHtcW_tb4gOQsoYEA2tP9wwjPsSZ0-YNdsDaNQLzer4qrmI9sHgK-e8");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Sophia Carter</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">1 month ago</p>
+</div>
+<div class="flex items-center gap-0.5 text-yellow-400">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+</div>
+</div>
+<p class="mt-4 text-gray-700 dark:text-gray-300">The cleaning service was exceptional! They were punctual, professional, and left my home sparkling clean. Highly recommend!</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 shadow-md">
+<div class="flex items-start gap-4">
+<div class="h-12 w-12 rounded-full bg-cover bg-center flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgWReDDxQ27YUlzlxRQ686SnLh9NScvwjqur2lzOKUwXV_-hJ3OYjaHPs1anb3rRjIX5cSPMfC-4JiF-wJEGMCqRXIIoFZcrZ-En9_w7KpVjfPosQHQvwOqOJUQ9xlB9hftf00H7YjdRczKP8Xwtnrda0ijAK1Z5rkXubvuDQW9XiSvqxSw9ABEt9r9Z564HvKOwi4ZthghYP8zbYCkE3Ro0uaZrtmM551Noey13r1MOGdLvIfyfd3ewxuJuo4Ia53aVtYfxNNI0I");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Ethan Bennett</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">2 months ago</p>
+</div>
+<div class="flex items-center gap-0.5 text-yellow-400">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+</div>
+</div>
+<p class="mt-4 text-gray-700 dark:text-gray-300">Good service overall. The team was efficient and friendly, but a few spots were missed. Still, a solid choice for home cleaning.</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 shadow-md">
+<div class="flex items-start gap-4">
+<div class="h-12 w-12 rounded-full bg-cover bg-center flex-shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoDT8jAvKjzlMY13Gi1lKGn9B8DYRBGpe8WFD5VmnlJ7hjMtdWUb-zgTQORM8ZhR1rIWBd1bZOHX2ZFuBtl6sE45TWT1EtefVJvWirssl7yJ8tmWtXhPbF9bZF23K9RTC3CVvEUDLiCI4Em-lLy1M1IWBXlk86FVgObFphhjwkxKaczZ96k66YNpCMhNNbuW1-XtJqsLH9A7b_Ioa73huLsNe6MozSJcnnSW8Z4QqnatxchmrnmDtAxsGTHMWCl9Oo19zlS63Z9tI");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Olivia Hayes</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">3 months ago</p>
+</div>
+<div class="flex items-center gap-0.5 text-yellow-400">
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"></path></svg>
+</div>
+</div>
+<p class="mt-4 text-gray-700 dark:text-gray-300">Absolutely fantastic! The team went above and beyond, paying attention to every detail. My home has never looked better. Will definitely use again.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<script>
+  const serviceType = "home-cleaning"; // hardcoded for this page
+
+  fetch(`http://localhost:3000/api/workers?service=${serviceType}`)
+    .then(res => res.json())
+    .then(workers => renderWorkerCards(workers))
+    .catch(err => console.error("Error loading workers:", err));
+
+  function renderWorkerCards(workers) {
+    const container = document.getElementById("worker-list");
+    container.innerHTML = workers.map(worker => `
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-lg font-semibold text-slate-800">${worker.firstName} ${worker.lastName}</h3>
+        <p class="text-sm text-slate-600">${worker.services.join(", ")}</p>
+        <p class="text-sm text-slate-500">📍 ${worker.location || "Location not set"}</p>
+        <button class="mt-4 bg-primary text-white px-4 py-2 rounded" onclick="startBooking('${worker._id}')">
+          Book Now
+        </button>
+      </div>
+    `).join("");
+  }
+
+  // ✅ Move this outside so it's globally accessible
+  function startBooking(workerId) {
+    localStorage.setItem("selectedWorkerId", workerId);
+    localStorage.setItem("selectedService", serviceType);
+    window.location.href = "home-cleaning-booking.html";
+  }
+</script>
+
+  <script src="js/chatbot.js"></script>
+</body></html>
+

@@ -1,0 +1,250 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.nav-buttons a {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #e9f5ff;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-buttons {
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+}
+
+.btn.secondary {
+  background-color: #6c757d;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  margin-top: 3rem;
+}
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 320px;
+  margin: 5vh auto;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+input, select, button {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#errorMsg {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.dashboard-container {
+  max-width: 600px;
+  margin: 5vh auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.dashboard-container h2 {
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.dashboard-container h3 {
+  margin-top: 2rem;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #f1f1f1;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.job-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+
+.job-card h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.job-card button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.job-card button:hover {
+  background-color: #218838;
+}
+
+form input, form textarea {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+/* Worker Dashboard Cards */
+.job-card {
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 6px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.job-card h3 {
+  margin: 0 0 0.5rem;
+  color: #333;
+}
+
+.job-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+/* Status Colors */
+.job-card[data-status="pending"] {
+  border-left-color: #ffc107;
+}
+
+.job-card[data-status="accepted"] {
+  border-left-color: #28a745;
+}
+
+.job-card[data-status="rejected"] {
+  border-left-color: #dc3545;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  animation: fadeInOut 4s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+

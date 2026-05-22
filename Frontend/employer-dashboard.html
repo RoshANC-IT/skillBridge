@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Bridge · Employer Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            colors: {
+              primary: "#6b3df4",
+              page: "#f8f7ff",
+              ink: "#0f172a",
+              "ink-muted": "#475569",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(100%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .animate-\[slideIn_0\.3s_ease-out\] {
+        animation: slideIn 0.3s ease-out;
+      }
+    </style>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+  <body class="bg-page font-display text-ink min-h-screen">
+    <div class="min-h-screen grid lg:grid-cols-[280px,1fr]">
+      <aside class="hidden lg:flex flex-col gap-8 border-r border-gray-100 bg-white p-8">
+        <div>
+          <p class="text-sm text-ink-muted">Employer Dashboard</p>
+          <h1 class="text-2xl font-bold text-primary">Skill Bridge</h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <div id="employerAvatar" class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xl">
+            SL
+          </div>
+          <div>
+            <p id="employerName" class="text-lg font-semibold">Loading...</p>
+            <p id="employerRole" class="text-sm text-ink-muted">employer</p>
+            <p class="text-xs text-ink-muted">ID: <span id="employerId">--</span></p>
+          </div>
+        </div>
+        <nav class="space-y-2">
+          <button id="openJobFormSidebar" class="w-full flex items-center gap-3 px-4 py-3 rounded-2xl border border-gray-200 hover:border-primary hover:text-primary">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span data-i18n="nav.postJob">Post a job</span>
+          </button>
+          <button id="openMultiWorkerBooking" class="w-full flex items-center gap-3 px-4 py-3 rounded-2xl border border-gray-200 hover:border-primary hover:text-primary">
+            <span class="material-symbols-outlined">group_add</span>
+            <span data-i18n="nav.multiWorker">Multi-worker booking</span>
+          </button>
+          <div class="pt-2 border-t border-gray-100">
+            <label class="text-xs text-ink-muted mb-2 block" data-i18n="nav.language">Language</label>
+            <select id="languageSelector" class="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm">
+              <option value="en">English</option>
+              <option value="mr">मराठी (Marathi)</option>
+              <option value="hi">हिंदी (Hindi)</option>
+            </select>
+          </div>
+          <button id="logoutEmployer" class="w-full flex items-center gap-3 px-4 py-3 rounded-2xl border border-rose-100 text-rose-600">
+            <span class="material-symbols-outlined">logout</span>
+            <span data-i18n="nav.logout">Logout</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main class="w-full flex flex-col gap-6 p-4 lg:p-8">
+
+        <!-- Ban Notice Banner (shown by JS if account is banned) -->
+        <div id="bannedBanner" class="hidden flex items-start gap-4 bg-rose-50 border-2 border-rose-400 rounded-2xl p-5 shadow-md">
+          <div class="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+            <span class="material-symbols-outlined text-rose-700 text-2xl">block</span>
+          </div>
+          <div>
+            <h3 class="text-rose-700 font-bold text-base">Account Banned</h3>
+            <p class="text-rose-600 text-sm mt-1">Your account has been banned. Please contact to Admin for further assistance.</p>
+          </div>
+        </div>
+
+        <header class="flex flex-wrap gap-3 justify-between items-center bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+          <div>
+            <p class="text-sm text-ink-muted" data-i18n="header.subtitle">Manage your workforce</p>
+            <h2 class="text-xl font-semibold" id="employerGreeting">Welcome back</h2>
+          </div>
+          <div class="flex gap-2">
+            <button id="openJobFormButton" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white font-semibold shadow hover:bg-primary/90">
+              <span class="material-symbols-outlined text-base">add</span>
+              <span data-i18n="header.newJob">New job</span>
+            </button>
+            <button id="openMultiWorkerButton" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold shadow hover:bg-emerald-700">
+              <span class="material-symbols-outlined text-base">group_add</span>
+              <span data-i18n="header.multiWorker">Hire Team</span>
+            </button>
+            <button id="mobileLogout" class="lg:hidden inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200">
+              <span class="material-symbols-outlined text-base">logout</span>
+              <span data-i18n="nav.logout">Logout</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="grid gap-4 md:grid-cols-4">
+          <article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+            <p class="text-sm text-ink-muted uppercase tracking-wide" data-i18n="stats.jobsPosted">Jobs Posted</p>
+            <p id="statTotalJobs" class="text-3xl font-bold mt-2">--</p>
+          </article>
+          <article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+            <p class="text-sm text-ink-muted uppercase tracking-wide" data-i18n="stats.openRoles">Open Roles</p>
+            <p id="statOpenJobs" class="text-3xl font-bold mt-2 text-emerald-600">--</p>
+          </article>
+          <article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+            <p class="text-sm text-ink-muted uppercase tracking-wide" data-i18n="stats.paused">Paused</p>
+            <p id="statPausedJobs" class="text-3xl font-bold mt-2 text-amber-500">--</p>
+          </article>
+          <article class="rounded-2xl bg-white border border-gray-100 shadow-sm p-5">
+            <p class="text-sm text-ink-muted uppercase tracking-wide" data-i18n="stats.applicants">Applicants</p>
+            <p id="statApplicants" class="text-3xl font-bold mt-2 text-primary">--</p>
+          </article>
+        </section>
+
+        <!-- Predictive Analytics Section -->
+        <section class="grid gap-6 lg:grid-cols-2">
+          <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-lg font-semibold" data-i18n="analytics.costForecast">Project Cost Forecast</h3>
+                <p class="text-sm text-ink-muted" data-i18n="analytics.costSubtitle">Estimated project expenses</p>
+              </div>
+              <span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
+            </div>
+            <div id="costForecastContainer" class="space-y-3">
+              <div class="flex items-center justify-between p-4 bg-gradient-to-r from-primary/10 to-purple-100 rounded-xl">
+                <div>
+                  <p class="text-sm text-ink-muted" data-i18n="analytics.estimatedCost">Estimated Cost</p>
+                  <p id="forecastCost" class="text-2xl font-bold text-primary">₹0</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs text-ink-muted" data-i18n="analytics.variance">Variance</p>
+                  <p id="forecastVariance" class="text-sm font-semibold text-emerald-600">±0%</p>
+                </div>
+              </div>
+              <div class="h-32 bg-gray-50 rounded-xl flex items-center justify-center">
+                <p class="text-sm text-ink-muted" data-i18n="analytics.chartPlaceholder">Cost trend chart will appear here</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-lg font-semibold" data-i18n="analytics.availabilityForecast">Worker Availability Forecast</h3>
+                <p class="text-sm text-ink-muted" data-i18n="analytics.availabilitySubtitle">Next 7 days prediction</p>
+              </div>
+              <span class="material-symbols-outlined text-emerald-600 text-2xl">calendar_today</span>
+            </div>
+            <div id="availabilityForecastContainer" class="space-y-3">
+              <div class="grid grid-cols-7 gap-2">
+                <!-- Days will be populated by JS -->
+              </div>
+              <div class="mt-4 p-4 bg-emerald-50 rounded-xl">
+                <p class="text-sm font-semibold text-emerald-800" data-i18n="analytics.peakAvailability">Peak Availability</p>
+                <p id="peakAvailability" class="text-lg font-bold text-emerald-700">--</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid gap-6 lg:grid-cols-3">
+          <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 space-y-4 lg:col-span-2">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-semibold" data-i18n="jobs.active">Active jobs</h3>
+                <p class="text-sm text-ink-muted" data-i18n="jobs.subtitle">Track performance across roles</p>
+              </div>
+            <button id="refreshJobs" class="text-sm font-semibold text-primary flex items-center gap-1 hover:text-primary/80 transition" title="Refresh dashboard data">
+              <span class="material-symbols-outlined text-base">refresh</span>
+              <span data-i18n="common.refresh">Refresh</span>
+            </button>
+            <button onclick="window.fetchDashboard && window.fetchDashboard(true)" class="text-xs text-ink-muted hover:text-primary transition" title="Force refresh">
+              <span class="material-symbols-outlined text-sm">sync</span>
+            </button>
+            </div>
+            <div id="employerJobsContainer" class="space-y-3">
+              <p class="text-sm text-ink-muted" data-i18n="jobs.loading">Loading jobs...</p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <form id="jobForm" class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold" data-i18n="jobForm.title">Post a new job</h3>
+                <p class="text-sm text-ink-muted" data-i18n="jobForm.subtitle">Find skilled workers fast</p>
+              </div>
+              <div class="space-y-3">
+                <input id="title" type="text" class="w-full rounded-2xl border-gray-200" data-i18n-placeholder="jobForm.roleTitle" placeholder="Role title" required />
+                <input id="location" type="text" class="w-full rounded-2xl border-gray-200" data-i18n-placeholder="jobForm.location" placeholder="City or remote" />
+                <input id="pay" type="number" min="0" class="w-full rounded-2xl border-gray-200" data-i18n-placeholder="jobForm.budget" placeholder="Budget (₹)" required />
+                <!-- Skills Checkbox Grid -->
+                <div>
+                  <p class="text-xs font-semibold text-ink-muted mb-2">Required Skills <span class="font-normal">(select all that apply)</span></p>
+                  <!-- Selected pills -->
+                  <div id="jobSkillsPills" class="flex flex-wrap gap-1.5 mb-2 min-h-[1.5rem]"></div>
+                  <!-- Grid -->
+                  <div id="jobSkillsGrid" class="grid grid-cols-2 gap-1.5 rounded-2xl border border-gray-200 bg-gray-50 p-2.5 max-h-48 overflow-y-auto">
+                    <!-- Populated by JS -->
+                  </div>
+                </div>
+                <!-- Hidden input to hold comma-separated value for form submission -->
+                <input type="hidden" id="skills" />
+                <textarea id="description" rows="4" class="w-full rounded-2xl border-gray-200" data-i18n-placeholder="jobForm.description" placeholder="Describe the work" required></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold py-3 rounded-2xl shadow hover:bg-primary/90"
+              >
+                <span class="material-symbols-outlined text-base">rocket_launch</span>
+                <span data-i18n="jobForm.publish">Publish job</span>
+              </button>
+            </form>
+
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold" data-i18n="applicants.recent">Recent applicants</h3>
+                <button id="refreshApplicants" class="text-sm text-primary font-semibold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">refresh</span>
+                  <span data-i18n="common.refresh">Refresh</span>
+                </button>
+              </div>
+              <div id="recentApplicantsContainer" class="space-y-4 text-sm text-ink-muted">
+                <p data-i18n="applicants.waiting">Waiting for new applications...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Multi-Worker Booking Modal -->
+    <div id="multiWorkerModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+          <h3 class="text-2xl font-bold" data-i18n="multiWorker.title">Multi-Worker Booking</h3>
+          <button id="closeMultiWorkerModal" class="text-gray-400 hover:text-gray-600">
+            <span class="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+        <div class="p-6 space-y-6">
+          <div>
+            <label class="block text-sm font-semibold mb-2" data-i18n="multiWorker.projectName">Project Name</label>
+            <input id="multiWorkerProjectName" type="text" class="w-full rounded-xl border border-gray-200 px-4 py-3" placeholder="e.g., Residential Building Construction" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" data-i18n="multiWorker.budget">Total Budget (₹)</label>
+            <input id="multiWorkerBudget" type="number" min="0" class="w-full rounded-xl border border-gray-200 px-4 py-3" placeholder="50000" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" data-i18n="multiWorker.timeline">Project Timeline</label>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs text-ink-muted" data-i18n="multiWorker.startDate">Start Date</label>
+                <input id="multiWorkerStartDate" type="date" class="w-full rounded-xl border border-gray-200 px-4 py-3" />
+              </div>
+              <div>
+                <label class="text-xs text-ink-muted" data-i18n="multiWorker.endDate">End Date</label>
+                <input id="multiWorkerEndDate" type="date" class="w-full rounded-xl border border-gray-200 px-4 py-3" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-4" data-i18n="multiWorker.selectWorkers">Select Workers</label>
+            <div id="multiWorkerSelection" class="space-y-4">
+              <!-- Worker type selections will be added here -->
+            </div>
+            <button id="addWorkerType" class="mt-4 w-full py-2 border-2 border-dashed border-gray-300 rounded-xl text-primary font-semibold hover:border-primary transition">
+              <span class="material-symbols-outlined align-middle">add</span>
+              <span data-i18n="multiWorker.addType">Add Worker Type</span>
+            </button>
+          </div>
+          <div class="pt-4 border-t border-gray-200">
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-semibold" data-i18n="multiWorker.totalWorkers">Total Workers:</span>
+              <span id="multiWorkerTotal" class="text-2xl font-bold text-primary">0</span>
+            </div>
+            <button id="submitMultiWorkerBooking" class="w-full bg-primary text-white font-semibold py-4 rounded-xl hover:bg-primary/90 transition">
+              <span class="material-symbols-outlined align-middle">group_add</span>
+              <span data-i18n="multiWorker.bookTeam">Book Team</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Worker Detail Modal (for reliability scores, ratings, payment) -->
+    <div id="workerDetailModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+          <h3 class="text-2xl font-bold" id="workerDetailName">Worker Details</h3>
+          <button id="closeWorkerDetailModal" class="text-gray-400 hover:text-gray-600">
+            <span class="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+        <div class="p-6 space-y-6">
+          <!-- Reliability Score -->
+          <div class="bg-gradient-to-r from-primary/10 to-purple-100 rounded-2xl p-6">
+            <h4 class="font-semibold mb-4" data-i18n="worker.reliabilityScore">Reliability Score</h4>
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <div class="text-center">
+                <p class="text-3xl font-bold text-primary" id="reliabilityScore">--</p>
+                <p class="text-xs text-ink-muted mt-1" data-i18n="worker.overall">Overall</p>
+              </div>
+              <div class="text-center">
+                <p class="text-lg font-semibold" id="acceptanceRate">--%</p>
+                <p class="text-xs text-ink-muted mt-1" data-i18n="worker.acceptance">Acceptance</p>
+              </div>
+              <div class="text-center">
+                <p class="text-lg font-semibold" id="punctualityScore">--%</p>
+                <p class="text-xs text-ink-muted mt-1" data-i18n="worker.punctuality">Punctuality</p>
+              </div>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+              <div id="reliabilityBar" class="bg-primary h-3 rounded-full transition-all" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Payment Section -->
+          <div class="border border-gray-200 rounded-2xl p-6">
+            <h4 class="font-semibold mb-4" data-i18n="worker.payment">Payment</h4>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                <span data-i18n="worker.amountDue">Amount Due</span>
+                <span id="paymentAmount" class="text-xl font-bold text-primary">₹0</span>
+              </div>
+              <button id="payWorkerButton" class="w-full bg-emerald-600 text-white font-semibold py-3 rounded-xl hover:bg-emerald-700 transition flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">payments</span>
+                <span data-i18n="worker.payNow">Pay Now</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ratings & Feedback History -->
+          <div class="border border-gray-200 rounded-2xl p-6">
+            <h4 class="font-semibold mb-4" data-i18n="worker.ratingsHistory">Ratings & Feedback History</h4>
+            <div id="ratingsHistoryContainer" class="space-y-4">
+              <!-- Ratings will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/skills-data.js"></script>
+    <script src="js/employer.js"></script>
+    <script>
+      // Diagnostic script - runs after page load
+      window.addEventListener('load', function() {
+        console.log('🔍 Dashboard Diagnostic Check:');
+        console.log('1. Token:', localStorage.getItem('token') ? 'Present' : 'Missing');
+        console.log('2. User:', localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : 'Missing');
+        console.log('3. API Base:', window.EMPLOYER_API_BASE || 'Not set (check employer.js)');
+        console.log('4. Elements check:');
+        console.log('   - employerJobsContainer:', !!document.getElementById('employerJobsContainer'));
+        console.log('   - statTotalJobs:', !!document.getElementById('statTotalJobs'));
+        console.log('   - employerName:', !!document.getElementById('employerName'));
+        console.log('5. fetchDashboard function:', typeof window.fetchDashboard);
+        
+        // If fetchDashboard exists, test it
+        if (typeof window.fetchDashboard === 'function') {
+          console.log('✅ fetchDashboard is available');
+        } else {
+          console.error('❌ fetchDashboard is not available');
+        }
+      });
+    </script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
+
+
+

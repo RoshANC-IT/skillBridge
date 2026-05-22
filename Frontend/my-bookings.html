@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings | Skill Bridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" />
+  <script src="https://cdn.tailwindcss?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#7f13ec",
+            "background-light": "#f7f6f8",
+            "background-dark": "#191022",
+          },
+          fontFamily: {
+            display: ["Manrope"],
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Custom animations and enhancements */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .animate-slideIn {
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    /* Booking card enhancements */
+    .booking-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeIn 0.4s ease-out;
+    }
+    
+    .booking-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 20px 25px -5px rgba(127, 19, 236, 0.1), 0 10px 10px -5px rgba(127, 19, 236, 0.04);
+    }
+    
+    /* Filter tab enhancements */
+    .filter-tab {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+    
+    .filter-tab.active {
+      color: #7f13ec !important;
+      font-weight: 700 !important;
+      background: rgba(127, 19, 236, 0.1) !important;
+      border-color: rgba(127, 19, 236, 0.2);
+    }
+    
+    .dark .filter-tab.active {
+      background: rgba(127, 19, 236, 0.2) !important;
+      border-color: rgba(127, 19, 236, 0.3);
+    }
+    
+    .filter-tab:hover:not(.active) {
+      color: #7f13ec;
+      transform: translateY(-1px);
+      background: rgba(127, 19, 236, 0.05);
+      border-color: rgba(127, 19, 236, 0.1);
+    }
+    
+    .dark .filter-tab:hover:not(.active) {
+      background: rgba(127, 19, 236, 0.1);
+      border-color: rgba(127, 19, 236, 0.2);
+    }
+    
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+      );
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+    }
+    
+    .dark .skeleton {
+      background: linear-gradient(
+        90deg,
+        #2a2a2a 25%,
+        #333 50%,
+        #2a2a2a 75%
+      );
+      background-size: 1000px 100%;
+    }
+    
+    /* Status badge pulse */
+    .status-badge {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .status-badge.pending::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 9999px;
+      z-index: -1;
+      background: rgba(245, 158, 11, 0.2);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    .status-badge.confirmed::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 9999px;
+      z-index: -1;
+      background: rgba(16, 185, 129, 0.2);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    /* Handle in-progress status (hyphen in class name) */
+    .status-badge[class*="in-progress"]::before,
+    .status-badge[data-status="in-progress"]::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 9999px;
+      z-index: -1;
+      background: rgba(59, 130, 246, 0.2);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    /* Button enhancements */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn-primary:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Empty state animation */
+    .empty-state-icon {
+      animation: fadeIn 0.6s ease-out 0.2s both;
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced focus states */
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid #7f13ec;
+      outline-offset: 2px;
+    }
+    
+    /* Loading spinner */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+    
+    /* Card stagger animation */
+    .booking-card:nth-child(1) { animation-delay: 0.05s; }
+    .booking-card:nth-child(2) { animation-delay: 0.1s; }
+    .booking-card:nth-child(3) { animation-delay: 0.15s; }
+    .booking-card:nth-child(4) { animation-delay: 0.2s; }
+    .booking-card:nth-child(5) { animation-delay: 0.25s; }
+    .booking-card:nth-child(6) { animation-delay: 0.3s; }
+    
+    /* Improved backdrop blur */
+    .backdrop-blur {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    /* Service icon gradient */
+    .service-icon-wrapper {
+      background: linear-gradient(135deg, rgba(127, 19, 236, 0.1) 0%, rgba(127, 19, 236, 0.05) 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .booking-card:hover .service-icon-wrapper {
+      background: linear-gradient(135deg, rgba(127, 19, 236, 0.2) 0%, rgba(127, 19, 236, 0.1) 100%);
+      transform: scale(1.1);
+    }
+  </style>
+  <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen">
+  <div class="relative flex min-h-screen flex-col">
+    <!-- Header -->
+    <header class="sticky top-0 z-20 border-b border-slate-200/70 bg-background-light/90 dark:border-slate-800/70 dark:bg-background-dark/80 backdrop-blur shadow-sm">
+      <div class="container mx-auto flex h-20 items-center justify-between px-4 lg:px-10">
+        <a href="index.html" class="flex items-center gap-3">
+          <svg class="h-10 w-10 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+          </svg>
+          <div>
+            <p class="text-xs uppercase tracking-widest text-primary">Skill Bridge</p>
+            <p class="text-lg font-semibold text-slate-900 dark:text-white">My Bookings</p>
+          </div>
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="rounded-full border-2 border-slate-300/70 px-5 py-2 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-100 hover:border-primary/50 hover:text-primary dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800/70 dark:hover:border-primary/50">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">home</span>
+              Home
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 container mx-auto px-4 py-8 lg:px-10">
+      <div class="mb-8 animate-fadeIn">
+        <h1 class="text-5xl font-black text-slate-900 dark:text-white mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">My Bookings</h1>
+        <p class="text-base text-slate-600 dark:text-slate-400">Track and manage all your service bookings in one place</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="mb-8 flex flex-wrap gap-2 border-b-2 border-slate-200 dark:border-slate-700 pb-3">
+        <button data-filter="all" class="filter-tab active px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 rounded-xl transition-all duration-300">
+          All Bookings
+        </button>
+        <button data-filter="upcoming" class="filter-tab px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 rounded-xl transition-all duration-300">
+          Upcoming
+        </button>
+        <button data-filter="completed" class="filter-tab px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 rounded-xl transition-all duration-300">
+          Completed
+        </button>
+        <button data-filter="cancelled" class="filter-tab px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 rounded-xl transition-all duration-300">
+          Cancelled
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingState" class="hidden text-center py-16">
+        <div class="inline-flex flex-col items-center gap-4 text-slate-600 dark:text-slate-400">
+          <div class="relative">
+            <span class="material-symbols-outlined animate-spin text-4xl text-primary">refresh</span>
+          </div>
+          <span class="text-base font-semibold">Loading bookings...</span>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-20">
+        <div class="max-w-md mx-auto animate-fadeIn">
+          <span class="material-symbols-outlined empty-state-icon text-7xl text-slate-300 dark:text-slate-600 mb-6 block">event_busy</span>
+          <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-3">No bookings found</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-8 text-base">You haven't made any bookings yet. Start booking services to see them here.</p>
+          <a href="index.html" class="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-bold text-white shadow-xl shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-0.5">
+            <span class="material-symbols-outlined text-lg">search</span>
+            Browse Services
+          </a>
+        </div>
+      </div>
+
+      <!-- Bookings Grid -->
+      <div id="bookingsContainer" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Bookings will be rendered here -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-background-dark text-slate-200 mt-auto">
+      <div class="container mx-auto px-4 py-12 lg:px-10">
+        <div class="text-center text-xs text-slate-500">
+          © 2024 Skill Bridge. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/auth-guard.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/my-bookings.js"></script>
+  <script>
+    if (typeof checkAuth === "function") {
+      checkAuth();
+    }
+  </script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Applications · Skill Bridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            colors: {
+              primary: "#6b3df4",
+              page: "#f8f7ff",
+              ink: "#0f172a",
+              "ink-muted": "#475569",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+  <body class="bg-page font-display text-ink min-h-screen">
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-white border-b border-gray-100 px-4 py-4 lg:px-8">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+          <a href="employer-dashboard.html" class="flex items-center gap-2 text-primary font-semibold">
+            <span class="material-symbols-outlined">arrow_back</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="employer-dashboard.html" class="text-xl font-bold text-primary">Skill Bridge</a>
+        </div>
+      </header>
+
+      <main class="flex-1 p-4 lg:p-8 max-w-7xl mx-auto w-full">
+        <div class="mb-6">
+          <h1 class="text-3xl font-bold mb-2">All Applications</h1>
+          <p class="text-ink-muted">Manage applications across all your jobs</p>
+        </div>
+
+        <div id="applicationsContainer" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div class="animate-pulse bg-white rounded-2xl p-6 border border-gray-100">
+            <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+            <div class="h-4 bg-gray-100 rounded w-1/2"></div>
+          </div>
+        </div>
+
+        <div id="emptyState" class="hidden text-center py-12">
+          <span class="material-symbols-outlined text-6xl text-gray-300 mb-4">description</span>
+          <h3 class="text-xl font-semibold text-ink-muted mb-2">No applications yet</h3>
+          <p class="text-ink-muted">Applications will appear here when workers apply to your jobs</p>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="js/applications.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
+

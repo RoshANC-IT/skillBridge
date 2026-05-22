@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#7f13ec',
+              'background-light': '#f7f6f8',
+              'background-dark': '#191022',
+            },
+            fontFamily: {
+              display: ['Manrope'],
+            },
+            borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' },
+          },
+        },
+      };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Skill Bridge - Electrical Work</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+  <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+<div class="container mx-auto px-6">
+<div class="flex items-center justify-between py-4">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-gray-900 dark:text-white" href="#">
+<span class="material-symbols-outlined text-primary text-3xl">electric_bolt</span>
+<h2 class="text-xl font-bold tracking-tight">Skill Bridge</h2>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary" href="#">Home</a>
+<a class="text-sm font-medium text-primary" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary" href="#">About</a>
+<a class="text-sm font-medium hover:text-primary" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">search</span>
+<input class="form-input w-full rounded-full border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark/50 py-2 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary" placeholder="Search Services..." type="search"/>
+</div>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-background-light hover:bg-gray-200 dark:bg-background-dark/50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300">notifications</span>
+</button>
+<div class="aspect-square size-10 rounded-full bg-cover bg-center bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQo_aEVJ4RacMwzKbLkNijWoJc32sxbLRwXFomRVt6duU7KW8HUSBa13tiHVU1E_51K-guRPVxRmRUZP-w2OVjdfKYjmJYJyv8B1gu1hckpb0pPo5QZO95rqqyv-x7uZc3xAsjqOD1wq74Ttsb9BERQ4zyl9mZ_rGqGL_EWMpHMqUsehyXVXy8Yl2w2Adq_45X8mgI4MlkTECyDjz37spH2BnI99o9P1sQtbeKK9mjeW2AP8-SNBPCp8KdK5EjT2QF3WrMO5jx_4U");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="container mx-auto px-6 py-12">
+<div class="mx-auto max-w-4xl">
+<div class="mb-12 text-center">
+<h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">Electrical Work</h1>
+<p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Expert electricians for all your residential and commercial needs.</p>
+</div>
+<div class="mb-12">
+<h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">Services Offered</h2>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+<div class="flex items-start gap-4 rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">electrical_services</span>
+</div>
+<div>
+<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Wiring &amp; Rewiring</h3>
+<p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Complete wiring solutions for new constructions and renovations.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div>
+<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Fixture Installation</h3>
+<p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Installation of lights, fans, outlets, and other electrical fixtures.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Electrical Repairs</h3>
+<p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Troubleshooting and repair of electrical faults and appliances.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-white">Safety Inspections</h3>
+<p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">Comprehensive safety inspections and compliance checks.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-white dark:bg-gray-900 p-8 shadow-sm mb-12">
+<h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Transparent Pricing</h2>
+<p class="mt-4 text-gray-600 dark:text-gray-400">Our pricing is upfront and competitive. For a detailed quote tailored to your specific needs, please request a service. We believe in transparency with no hidden fees.</p>
+<div class="mt-6">
+<button onclick="startBooking('${worker._id}')" class="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-base font-medium text-white shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+                  Request a Service
+                </button>
+</div>
+</div>
+<div>
+<h2 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8">What Our Customers Say</h2>
+<div class="space-y-8">
+<div class="rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="aspect-square size-12 shrink-0 rounded-full bg-cover bg-center bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEliQ5lVupBuGJVkPWhi-ZV_Uoj1zwHd-05d02teIYmt8eOg2quoXosZe58MiQlCfFDGbQNlIzVr8dYEcObE0RH8501XxppsJ_wFZ4N8jr9QvplhJ9a0AT7ZlGdy9yFlmBSjArNLW1cYo_tFBC_2UbzTdwx4hFmEcPZAZeNE5i_hEqSnP96anWkvIy7KVd4SWwyRes0qQdGUppmAlY8SSTukgtR0wGt2lFel5rtu1q9wXVBre1io8SzuxGRP4c4xLlR38nrgrrvYQ");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Sophia Carter</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">1 month ago</p>
+</div>
+<div class="flex items-center text-yellow-500">
+<span class="material-symbols-outlined !text-base">star</span>
+<span class="material-symbols-outlined !text-base">star</span>
+<span class="material-symbols-outlined !text-base">star</span>
+<span class="material-symbols-outlined !text-base">star</span>
+<span class="material-symbols-outlined !text-base">star</span>
+</div>
+</div>
+<p class="mt-3 text-gray-700 dark:text-gray-300">"The electrician was prompt, professional, and did an excellent job. Highly recommended!"</p>
+<div class="mt-3 flex items-center gap-4 text-gray-500 dark:text-gray-400">
+<button class="flex items-center gap-1.5 text-sm hover:text-primary">
+<span class="material-symbols-outlined !text-lg">thumb_up</span> 12
+                        </button>
+<button class="flex items-center gap-1.5 text-sm hover:text-gray-600 dark:hover:text-gray-300">
+<span class="material-symbols-outlined !text-lg">thumb_down</span> 2
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl bg-white dark:bg-gray-900 p-6 shadow-sm">
+<div class="flex items-start gap-4">
+<div class="aspect-square size-12 shrink-0 rounded-full bg-cover bg-center bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZHL2CqqYs2isO4O3vk3ScLnVNNdtnNpCbjC4la-RB25FjnIYTRGy_t8d2brcP1f9ew2pssEETD0RzeDdbMwNeGcol50DVMsDofxGqhNwMKiQctcuc0cPkHLpOvsBrFCpLLWbz2PjDRKQS7LmsxDTzwlE_uP2M_O9ddaFDXYfLySdcscuHAb9620Tg2WcDMe0D_lnnlgKCBf7hne62chwAe8GqgyaTmitp1Qf0WiFZTZHWosWllsFH-Rp86l7vAFRdsQTQf08BGQw");'></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Ethan Bennett</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">2 months ago</p>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined !text-base text-yellow-500">star</span>
+<span class="material-symbols-outlined !text-base text-yellow-500">star</span>
+<span class="material-symbols-outlined !text-base text-yellow-500">star</span>
+<span class="material-symbols-outlined !text-base text-yellow-500">star</span>
+<span class="material-symbols-outlined !text-base text-gray-300 dark:text-gray-600">star</span>
+</div>
+</div>
+<p class="mt-3 text-gray-700 dark:text-gray-300">"Good service, but there was a slight delay in scheduling."</p>
+<div class="mt-3 flex items-center gap-4 text-gray-500 dark:text-gray-400">
+<button class="flex items-center gap-1.5 text-sm hover:text-primary">
+<span class="material-symbols-outlined !text-lg">thumb_up</span> 8
+                        </button>
+<button class="flex items-center gap-1.5 text-sm hover:text-gray-600 dark:hover:text-gray-300">
+<span class="material-symbols-outlined !text-lg">thumb_down</span> 1
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+  const serviceType = "electrical-work"; // hardcoded for this page
+
+  fetch(`http://localhost:3000/api/workers?service=${serviceType}`)
+    .then(res => res.json())
+    .then(workers => renderWorkerCards(workers))
+    .catch(err => console.error("Error loading workers:", err));
+
+  function renderWorkerCards(workers) {
+    const container = document.getElementById("worker-list");
+    container.innerHTML = workers.map(worker => `
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-lg font-semibold text-slate-800">${worker.firstName} ${worker.lastName}</h3>
+        <p class="text-sm text-slate-600">${worker.services.join(", ")}</p>
+        <p class="text-sm text-slate-500">📍 ${worker.location || "Location not set"}</p>
+        <button class="mt-4 bg-primary text-white px-4 py-2 rounded" onclick="startBooking('${worker._id}')">
+          Book Now
+        </button>
+      </div>
+    `).join("");
+  }
+
+  // ✅ Move this outside so it's globally accessible
+  function startBooking(workerId) {
+    localStorage.setItem("selectedWorkerId", workerId);
+    localStorage.setItem("selectedService", serviceType);
+    window.location.href = "electrical-work-booking.html";
+  }
+</script>
+
+  <script src="js/chatbot.js"></script>
+</body></html>
+
