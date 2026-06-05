@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 // const API_BASE = "http://localhost:3000/api/auth";
 //  // your backend base URL
 
@@ -135,6 +136,10 @@ function showToast(message, type = "success") {
 
 // ---------- API ----------
 const API_BASE = "http://localhost:3000/api/auth";
+=======
+const API_BASE = "http://localhost:3000/api/auth";
+ // your backend base URL
+>>>>>>> a4cea9b (real code)
 
 // ---------- REGISTER ----------
 async function handleRegister(e) {
@@ -152,6 +157,7 @@ async function handleRegister(e) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+<<<<<<< HEAD
         firstName,
         lastName,
         userName,
@@ -159,11 +165,22 @@ async function handleRegister(e) {
         password: password, // FIXED (was passWord)
         role
       })
+=======
+  firstName,
+  lastName,
+  userName,   // not userName
+  email,
+  passWord:password,   // not passWord
+  role
+})
+
+>>>>>>> a4cea9b (real code)
     });
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Registration failed");
 
+<<<<<<< HEAD
     // ❌ alert removed
     showToast("Registered successfully! Redirecting to login...", "success");
 
@@ -173,6 +190,12 @@ async function handleRegister(e) {
 
   } catch (err) {
     showToast(err.message, "error");
+=======
+    alert("✅ Registered successfully! Please login.");
+    window.location.href = "login.html";
+  } catch (err) {
+    alert("❌ " + err.message);
+>>>>>>> a4cea9b (real code)
   }
 }
 
@@ -187,12 +210,17 @@ async function handleLogin(e) {
     const res = await fetch(`${API_BASE}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+<<<<<<< HEAD
       body: JSON.stringify({ email, password }) // FIXED (was passWord)
+=======
+      body: JSON.stringify({ email, passWord: password })
+>>>>>>> a4cea9b (real code)
     });
 
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || "Login failed");
 
+<<<<<<< HEAD
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));
 
@@ -205,6 +233,16 @@ async function handleLogin(e) {
 
   } catch (err) {
     showToast(err.message, "error");
+=======
+    // Save token
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    alert("✅ Login successful!");
+    window.location.href = "index.html";
+  } catch (err) {
+    alert("❌ " + err.message);
+>>>>>>> a4cea9b (real code)
   }
 }
 
@@ -227,7 +265,11 @@ function logout() {
 document.addEventListener("DOMContentLoaded", () => {
   const regForm = document.querySelector("form[action='#'][method='POST']");
   const logForm = document.querySelector("form[action='#'][method='POST']");
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> a4cea9b (real code)
   if (window.location.pathname.includes("register.html") && regForm) {
     regForm.addEventListener("submit", handleRegister);
   }
@@ -235,4 +277,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname.includes("login.html") && logForm) {
     logForm.addEventListener("submit", handleLogin);
   }
+<<<<<<< HEAD
 });
+=======
+
+  // Example: add logout button dynamically later
+});
+>>>>>>> a4cea9b (real code)

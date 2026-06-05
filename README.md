@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a4cea9b (real code)
 # Skill Bridge - Home Services Platform
 
 A full-stack web application connecting employers with skilled workers for home services and construction projects.
@@ -429,6 +432,7 @@ If you encounter issues:
 
 
 
+<<<<<<< HEAD
 =======
 # skillBridge
 # Quick Setup Guide
@@ -493,4 +497,6 @@ JWT_SECRET=your-secret-key-here
 
 For detailed instructions, see [README.md](./README.md)
 >>>>>>> b5317d28b9ade91a8436bdcb1759b43388bd8aa7
+=======
+>>>>>>> a4cea9b (real code)
 
